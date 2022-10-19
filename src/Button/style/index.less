@@ -6,15 +6,15 @@
 
 @import '../../mixin/mixin.less';
 
-.buttonBox {
-    min-width: 300px;
+.button {
+    min-width: 200px;
     height: 90px;
     border: none;
     display: flex;
     align-items: center;
     justify-content: center;
     display: inline-block;
-    margin: 3px;
+    // margin: 3px;
     text-shadow: 0 -1px 0 rgb(0 0 0 / 12%);
     box-shadow: 0 2px #0000000b;
     border-radius: 2px;
@@ -36,18 +36,22 @@
 .default {
     background-color: @btn-bcg-bg;
     color: @btn-bcg-color;
+    &:hover {
+        background-color: @btn-bcg-h-bg;
+    }
 }
 
-.default:hover {
-    background-color: @btn-bcg-h-bg;
-}
 
 .dashed {
     background-color: none;
+    &:hover {
+        background-color: @btn-bcg-dh-h-bg;
+    }
 }
 
 .primary {
     background-color: @btn-bcg-bg;
+   
 }
 
 
@@ -56,8 +60,7 @@
 .danger {
     background-color: @btn-bcg-d-bg;
     color: @btn-bcg-color;
-}
-
-.danger:hover {
-    background-color: @btn-bcg-d-h-bg;
+    &:hover {
+        background-color: @btn-bcg-d-h-bg;
+    }
 }

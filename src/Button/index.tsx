@@ -53,7 +53,7 @@ const Button: FC<ButtonProps> = (
 ) => {
     return (
         <button
-            className={`${styles.buttonBox} ${danger ? styles.danger : ''} ${block ? styles.block : ''} ${styles[type]} ${className}`}
+            className={`${styles.button} ${danger ? styles.danger : ''} ${block ? styles.block : ''} ${styles[type]} ${className}`}
             disabled={disabled}
             onClick={onClick}
             style={style}
