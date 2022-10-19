@@ -1,12 +1,63 @@
-.buttonBox{
-    width: 300px;
-    height: 30px;
+// @btn-bcg-color: white;
+// @btn-bcg-bg: #1890FF;
+// @btn-bcg-h-bg: #83C7FF;
+// @btn-bcg-d-bg: #FF4D4F;
+// @btn-bcg-d-h-bg: rgba(255, 120, 117, 1);
+
+@import '../../mixin/mixin.less';
+
+.buttonBox {
+    min-width: 300px;
+    height: 90px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: inline-block;
+    margin: 3px;
+    text-shadow: 0 -1px 0 rgb(0 0 0 / 12%);
+    box-shadow: 0 2px #0000000b;
+    border-radius: 2px;
+    cursor: pointer;
+
+
+    .icon {
+        // width: 50%;
+        height: 18px;
+        margin-right: 10px;
+    }
 
 }
-.danger{
-    background-color: #FF4D4F;
+
+.block {
+    width: 100%;
 }
 
-.default{
-    background-color: #1890FF;
+.default {
+    background-color: @btn-bcg-bg;
+    color: @btn-bcg-color;
+}
+
+.default:hover {
+    background-color: @btn-bcg-h-bg;
+}
+
+.dashed {
+    background-color: none;
+}
+
+.primary {
+    background-color: @btn-bcg-bg;
+}
+
+
+
+
+.danger {
+    background-color: @btn-bcg-d-bg;
+    color: @btn-bcg-color;
+}
+
+.danger:hover {
+    background-color: @btn-bcg-d-h-bg;
 }

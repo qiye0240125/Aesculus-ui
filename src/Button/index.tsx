@@ -1,26 +1,70 @@
-import React, { FC } from 'react';
+import React, { CSSProperties, FC } from 'react';
 import styles from './style/index.less'
 
-interface ButtonProps {
+export interface ButtonProps {
+
     children?: string;
+    /**
+     * 点击按钮时的回调
+     */
     onClick?: React.MouseEventHandler<HTMLElement>;
-    type?: 'default' | 'primary';
+    /**
+     * 设置按钮类型
+     */
+    type?: 'default' | 'primary' | 'dashed';
+    /**
+    * 	设置危险按钮
+    */
     danger?: boolean;
+    /**
+   * 	按钮失效状态
+   */
     disabled?: boolean;
+    /**
+   * 	将按钮宽度调整为其父宽度的选项
+   */
+    block?: boolean;
+    /**
+  * 	设置按钮的图标组件 仅支持图片链接
+  */
+    icon?: string;
+    /**
+  * 	设置类名
+  */
+    className?: any;
+    /**
+  * 	设置style
+  */
+    style?: CSSProperties;
 }
 
 const Button: FC<ButtonProps> = (
-    { children,
+    {
+        children,
         onClick,
         type = 'default',
+        block = false,
         danger = false,
-        disabled = false }
+        icon = '',
+        className,
+        disabled = false,
+        style,
+    }
 ) => {
     return (
         <button
-            className={`${styles.buttonBox} ${danger ? styles.danger : ''} ${styles[type]}`}
+            className={`${styles.buttonBox} ${danger ? styles.danger : ''} ${block ? styles.block : ''} ${styles[type]} ${className}`}
             disabled={disabled}
-            onClick={onClick}>{children}</button>
+            onClick={onClick}
+            style={style}
+        >
+            {icon ?
+                <img
+                    className={styles.icon}
+                    src={icon} alt="" />
+                : null
+            }
+            {children}</button>
     )
 }
 

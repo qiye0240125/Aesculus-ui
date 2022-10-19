@@ -5,17 +5,24 @@ Demo:
 
 ```tsx
 import React from 'react';
-import { Button } from 'PART14';
+import { Button } from 'PART14'
+export default ()=>{
 
-const handleClick = () =>{
-    console.log('111')
-}
+    const onClick = (e) => {
+        console.log(e)
+    }
 
-export default () => {
-    return (
-        <Button type="default" onClick={() => handleClick()}>Primary Button</Button>
+    return(
+        <>
+        <Button onClick={(e) => onClick(e)}>我是测试</Button>
+        <Button danger>我是测试</Button>
+        <Button type='dashed'>我是测试</Button>
+        </>
         )
-    };
-```
+    }
 
-More skills for writing demo: https://d.umijs.org/guide/basic#write-component-demo
+```
+<API ></API>
+
+
+More skills for writing demo: https://github.com/qiye0240125/Aesculus-ui.git/
