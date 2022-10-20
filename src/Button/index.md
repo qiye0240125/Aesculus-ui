@@ -3,9 +3,10 @@
 
 Demo:
 
-```tsx
+```jsx
 import React from 'react';
 import { Button } from 'PART14'
+
 
 export default ()=>{
 
@@ -15,9 +16,10 @@ export default ()=>{
 
     return(
         <>
-        <Button onClick={(e) => onClick(e)}>我是测试</Button>
-        <Button danger>我是测试</Button>
-        <Button type='dashed'>我是测试</Button>
+        <Button onClick={(e) => onClick(e)}>Click Button</Button>
+        <Button danger>danger Button</Button>
+        <Button disabled>disabled Button</Button>
+        <Button block>default Button</Button>
         </>
         )
     }

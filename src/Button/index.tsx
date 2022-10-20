@@ -11,7 +11,7 @@ export interface ButtonProps {
     /**
      * 设置按钮类型
      */
-    type?: 'default' | 'primary' | 'dashed';
+    type?: 'default' | 'primary';
     /**
     * 	设置危险按钮
     */
@@ -60,11 +60,12 @@ const Button: FC<ButtonProps> = (
         >
             {icon ?
                 <img
-                    className={styles.icon}
+                    className={`${children ? styles.icon : styles.nulltext} `}
                     src={icon} alt="" />
                 : null
             }
-            {children}</button>
+            {children}
+        </button>
     )
 }
 

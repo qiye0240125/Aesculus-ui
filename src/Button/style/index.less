@@ -6,20 +6,27 @@
 
 @import '../../mixin/mixin.less';
 
+.transitions() {
+    transition: all 0.3s cubic-bezier(.645, .045, .355, 1);
+    transition-property: all;
+    transition-duration: 0.3s;
+    transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition-delay: 0s;
+}
+
 .button {
-    min-width: 200px;
-    height: 90px;
+    min-width: 120px;
+    height: 32px;
     border: none;
     display: flex;
     align-items: center;
     justify-content: center;
     display: inline-block;
-    // margin: 3px;
+    margin: 3px;
     text-shadow: 0 -1px 0 rgb(0 0 0 / 12%);
     box-shadow: 0 2px #0000000b;
     border-radius: 2px;
     cursor: pointer;
-
 
     .icon {
         // width: 50%;
@@ -27,6 +34,9 @@
         margin-right: 10px;
     }
 
+    .nulltext {
+        height: 18px;
+    }
 }
 
 .block {
@@ -36,22 +46,35 @@
 .default {
     background-color: @btn-bcg-bg;
     color: @btn-bcg-color;
+
     &:hover {
         background-color: @btn-bcg-h-bg;
+
     }
+
+    .transitions
 }
 
 
 .dashed {
     background-color: none;
+
     &:hover {
         background-color: @btn-bcg-dh-h-bg;
     }
+
+    .transitions
 }
 
 .primary {
     background-color: @btn-bcg-bg;
-   
+    color: @btn-bcg-color;
+
+    &:hover {
+        background-color: @btn-bcg-d-h-bg;
+    }
+
+    .transitions
 }
 
 
@@ -60,7 +83,26 @@
 .danger {
     background-color: @btn-bcg-d-bg;
     color: @btn-bcg-color;
+
     &:hover {
-        background-color: @btn-bcg-d-h-bg;
+        background-color: @btn-bcg-d-bg;
+        // background-color: @btn-bcg-d-h-bg;
+    }
+
+    .transitions
+}
+
+&:disabled {
+    cursor: not-allowed !important;
+    color: #00000040;
+    border-color: #d9d9d9;
+    background: #f5f5f5;
+    border: 1px solid transparent;
+
+    &:hover {
+        color: #00000040;
+        border-color: #d9d9d9;
+        background: #f5f5f5;
+        border: 1px solid transparent;
     }
 }
