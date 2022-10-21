@@ -32,3 +32,9 @@ Build library via `father`,
 $ npm run build
 ```
 "# Aesculus-ui" 
+
+```bash
+$ npx dumi dev
+```
+"# Aesculus-ui" 
+
