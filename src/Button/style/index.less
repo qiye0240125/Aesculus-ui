@@ -44,12 +44,15 @@
 }
 
 .default {
-    background-color: @btn-bcg-bg;
-    color: @btn-bcg-color;
+    background-color: white;
+    color: @btn-bcg-de-bg;
+    border: 1px solid #c5c5c5;
+    box-shadow: 0 2px #00000004;
 
     &:hover {
-        background-color: @btn-bcg-h-bg;
-
+        // background-color: @btn-bcg-h-bg;
+        color: @btn-bcg-bg;
+        border: 1px solid @btn-bcg-bg;
     }
 
     .transitions
@@ -71,7 +74,7 @@
     color: @btn-bcg-color;
 
     &:hover {
-        background-color: @btn-bcg-d-h-bg;
+        background-color: @btn-bcg-h-bg;
     }
 
     .transitions
@@ -83,6 +86,7 @@
 .danger {
     background-color: @btn-bcg-d-bg;
     color: @btn-bcg-color;
+    border: 1px solid @btn-bcg-d-bg;
 
     &:hover {
         background-color: @btn-bcg-d-bg;

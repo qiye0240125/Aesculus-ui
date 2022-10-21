@@ -18,6 +18,7 @@ export default ()=>{
         <>
         <Button onClick={(e) => onClick(e)}>Click Button</Button>
         <Button danger>danger Button</Button>
+        <Button  type='primary'>primary Button</Button>
         <Button disabled>disabled Button</Button>
         <Button block>default Button</Button>
         </>
