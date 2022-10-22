@@ -25,7 +25,10 @@ export default ()=>{
         <>
         <Button type='primary' onClick={() => onClick()}>Open</Button>
         <Drawer open={open} onClose={onClose}>
-            <div>11</div>
+            <div>Some contents...</div>
+            <div>Some contents...</div>
+            <div>Some contents...</div>
+
         </Drawer>
         </>
         )
