@@ -28,7 +28,6 @@ export default ()=>{
             <div>Some contents...</div>
             <div>Some contents...</div>
             <div>Some contents...</div>
-
         </Drawer>
         </>
         )
