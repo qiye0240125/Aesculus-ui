@@ -30,6 +30,14 @@ export interface SwiperProps {
      * 可选，切换索引的回调
      */
     onSlideChange?: () => void;
+    /**
+     * 可选，切换索引的回调
+     */
+     next?: () => void;
+    /**
+     * 可选，切换索引的回调
+     */
+     prev?: () => void;
 }
 
 // const myContent = myContext(null)
@@ -37,47 +45,68 @@ export interface SwiperProps {
 const Swiper: FC<SwiperProps> = (
     props
 ) => {
-    const { children=[] } = props
     //底部按钮
-    const [bottomIcon, setBottomIcon] = useState(1)
+    const [bottomIcon, setBottomIcon] = useState(0)
     //计算偏移量
-    const [clientWidth, setClientWidth] = useState(0);
-    // console.log(props.children.$$typeof == SwiperItem)
+    const [clientWidth, setClientWidth] = useState();
+    const [letfWidth, setLeftWidth] = useState(0);
     // console.log(props.children)
     // console.log(props.children[0].type.name)
 
-    const swiperWrapper = useRef(null)
+    const swiperWrapper = useRef<any>(null)
+
+    const { className = '', next,} = props
 
     // 获取单个元素的宽度
     useEffect(() => {
         // console.log(swiperWrapper.current.clientWidth)
-        setClientWidth(swiperWrapper.current.clientWidth)
-    }, [])
-    console.log(children)
+        // setClientWidth(swiperWrapper.current)
+        console.log(letfWidth)
+    }, [letfWidth])
+    // console.log(children)
+
+    const handleClick = (index: number) => {
+        const clientWidth = swiperWrapper.current.clientWidth
+        setBottomIcon(index)
+        setLeftWidth(index * clientWidth)
+    }
+
+    // const next = () => {
+    //     if (bottomIcon >= props.children.length)
+    //         return
+    //     handleClick(bottomIcon + 1)
+    // }
+    const prev = () => {
+        if (bottomIcon <= 0)
+            return
+        handleClick(bottomIcon - 1)
+    }
 
     return (
         <div
             ref={swiperWrapper}
             className={`${styles.swiperWrapper}`}>
-            {/* {props.children} */}
-            <div className={`${styles.swiperBox}`}>
-                {React.Children.map(props.children, (item, i) => {
-                    // console.log(props.children)
-                    return (
-                        <SwiperItem>
-                           {item}
-                        </SwiperItem>
-                    )
-                })}
+            <div
+                style={{ left: `-${letfWidth}px` }}
+                className={`${styles.swiperBox} ${styles[className]}`}>
+                {!props.children
+                    ? props.children.length.map((item: any, index: number) => {
+                        return (
+                            <div className={styles.siwperItem} key={index}>
+                                {item}
+                            </div>
+                        );
+                    })
+                    : props.children.map((child: any, index: number) => <div className={styles.siwperItem} key={index}>{child}</div>)}
             </div>
 
             <ul className={styles.ol}>
                 {(() => {
                     let li = [];
-                    for (let i = 1; i <= children.length; i++) {
+                    for (let i = 0; i < props.children.length; i++) {
                         li.push(
                             <li
-                                onClick={() => setBottomIcon(i)}
+                                onClick={() => handleClick(i)}
                                 className={`${styles.li} ${bottomIcon === i ? styles.isOpen : styles.isClose}`}
                                 key={i} />
                         )

@@ -12,10 +12,10 @@ export interface SwiperItemProps {
 const SwiperItem: FC<SwiperItemProps> = (props) => {
     // console.log('SwiperItem')
     // console.log(props)
-    const { children, cssstyle} = props;
+    const { children, cssstyle } = props;
     return (
         <div
-        className={`${styles.swiperItem}`}>
+            className={`${styles.swiperItem}`}>
             {children}
         </div >
     )

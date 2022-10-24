@@ -44,7 +44,7 @@ const Drawer: FC<DrawerProps> = (
 
     const closeMaskHndle = (e: any) => {
         e.persist()
-        console.log(e)
+        // console.log(e)
         if (e.target !== divRef.current)
             return
         // showDrawer()

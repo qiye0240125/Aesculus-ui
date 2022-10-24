@@ -5,18 +5,17 @@ Demo:
 
 ```jsx
 import React,{ useState } from 'react';
-import {SwiperItem,Swiper} from 'PART14'
-
+import {Swiper} from 'PART14'
 
 export default ()=>{
 
     return(
         <>
             <Swiper>
-                <SwiperItem><h1>1</h1></SwiperItem> 
-                <SwiperItem><h1>2</h1></SwiperItem> 
-                <SwiperItem><h1>3</h1></SwiperItem> 
-                <SwiperItem><h1>4</h1></SwiperItem> 
+                <div><h1>1</h1></div>
+                <div><h1>2</h1></div>
+                <div><h1>3</h1></div>
+                <div><h1>4</h1></div>
             </Swiper>
         </>
         )
