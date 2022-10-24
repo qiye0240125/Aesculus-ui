@@ -16,6 +16,7 @@ export default ()=>{
     return(
         <>
             <Breadcrumb children={state} />
+            <Breadcrumb children={state} separator='→'/>
         </>
         )
     }

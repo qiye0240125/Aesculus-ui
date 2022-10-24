@@ -1,0 +1,57 @@
+.swiperWrapper {
+   position: relative;
+   display: flex;
+   justify-content: center;
+   width: 300px;
+   height: 150px;
+
+   .swiperBox {
+
+      display: flex;
+      // color: #00000073;
+      // overflow: hidden;
+      width: 100%;
+      height: 100%;
+      // background-color: rgb(123, 86, 255);
+      color: rgb(31, 31, 31);
+      border: 1px solid #000000;
+      .swiperItem{
+         // position: absolute;
+         // display: flex;
+         // justify-content: center;
+         // align-items: center;
+      }
+
+   }
+
+   .ol {
+      position: absolute;
+      bottom: 5px;
+      // z-index: 10;
+      padding: 0;
+      margin: auto;
+      list-style: none;
+
+      .li {
+         display: inline-block;
+         flex: 0 1 auto;
+         box-sizing: content-box;
+         width: 16px;
+         height: 3px;
+         margin: 0 3px;
+         padding: 0;
+         background-color: rgba(255, 255, 255, 0.5);
+         cursor: pointer;
+         transition: width 200ms;
+      }
+
+      .isOpen {
+         background-color: rgb(255, 255, 255);
+         width: 24px;
+      }
+
+      .isClose {
+         width: 16px;
+      }
+   }
+}
