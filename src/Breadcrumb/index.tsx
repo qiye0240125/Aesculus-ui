@@ -26,21 +26,19 @@ const Breadcrumb: FC<BreadcrumbProps> = (
         className = '',
     }
 ) => {
-
-    // console.log(children)
     return (
         <div
             className={`${styles.breadcrumbBox}`}>
-            {children?.map((item: any) => {
+            {children?.map((item: any, i: number) => {
                 return (
-                    <>
+                    <div className={styles.breadcrumb} key={i}>
                         <div className={styles.separator}>
                             {separator}
                         </div>
                         <div className={`${styles.breadcrumbText} ${styles[className]}`}>
                             {item}
                         </div>
-                    </>
+                    </div>
                 )
             })}
         </div >

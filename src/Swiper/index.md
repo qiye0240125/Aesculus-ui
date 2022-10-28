@@ -9,13 +9,30 @@ import {Swiper} from 'PART14'
 
 export default ()=>{
 
+const [state,setState] = useState([{
+        name:'1',path:'/1',key:'1'
+    },{
+        name:'2',path:'/2',key:'2'
+    },{
+        name:'3',path:'/3',key:'3'
+    },])
+
+const onchange=(event)=>{
+        console.log(event)
+}
+
     return(
         <>
             <Swiper>
-                <div><h1>1</h1></div>
-                <div><h1>2</h1></div>
-                <div><h1>3</h1></div>
-                <div><h1>4</h1></div>
+                {state.map((item)=>{
+                    return(
+                        <div 
+                        onClick={()=> onchange(item)}
+                        key={item.key}>
+                            {item.name}
+                        </div>
+                    )
+                })}
             </Swiper>
         </>
         )

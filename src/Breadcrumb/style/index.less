@@ -6,25 +6,36 @@
    list-style: none;
    // color: #00000073;
 
+   .breadcrumb {
+      display: flex;
 
-   .breadcrumbText {
-      color: #00000073;
+      .breadcrumbText {
+         color: #00000073;
+      }
+
+
+
+
+
+
    }
 
+   .breadcrumb:first-child {
+      .separator {
+         display: none;
+      }
 
+
+   }
 
    .separator {
       margin: 0 8px;
       color: #00000073;
    }
 
-   .breadcrumbText:last-child {
-      color: #000000d9;
+   .breadcrumb:last-child  {
+      .breadcrumbText{
+         color: #000000d9;
+      }
    }
-
-   .separator:first-child {
-      display: none;
-   }
-
-
 }

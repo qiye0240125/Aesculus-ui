@@ -55,7 +55,7 @@ const Button: FC<ButtonProps> = (
         <button
             className={`${styles.button} ${danger ? styles.danger : ''} ${block ? styles.block : ''} ${styles[type]} ${className}`}
             disabled={disabled}
-            onClick={() => onClick}
+            onClick={onClick}
             style={style}
         >
             {icon ?
