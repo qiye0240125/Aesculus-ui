@@ -34,7 +34,7 @@ export interface SwiperProps {
     /**
      * 可选，切换索引的回调
      */
-    // onSlideChange?: (event: any, index: number) => void
+    onSlideChange?: (event: any, index: number) => void
 }
 
 // const myContent = myContext(null)
@@ -50,6 +50,7 @@ const Swiper: FC<SwiperProps> = (
         className = '',
         duration = 0.5,
         autoplay = false,
+        onSlideChange,
     }
     // props
 ) => {
@@ -80,7 +81,7 @@ const Swiper: FC<SwiperProps> = (
         const start = new Date().getTime()
         const I = setInterval(() => {
             let newtime = new Date().getTime() - start
-            setCallbackTime(newtime)
+            // setCallbackTime(newtime)
             // console.log(newtime)
             const lenth = children.length
             handleClick(Math.floor(newtime / 3000) % lenth)
@@ -92,7 +93,7 @@ const Swiper: FC<SwiperProps> = (
 
     useEffect(() => {
         setLeftWidth(bottomIcon * clientWidth)
-        console.log(bottomIcon)
+        // console.log(bottomIcon)
     }, [bottomIcon])
 
 
@@ -133,7 +134,7 @@ const Swiper: FC<SwiperProps> = (
                     for (let i = 0; i < children.length; i++) {
                         li.push(
                             <li
-                                onClick={(e) => handleClick(i)}
+                                onClick={(e) => { handleClick(i); onSlideChange ? onSlideChange(e, i) : null }}
                                 className={`${styles.li} ${bottomIcon === i ? styles.isOpen : styles.isClose}`}
                                 key={i} />
                         )

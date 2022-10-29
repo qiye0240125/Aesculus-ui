@@ -15,7 +15,7 @@ const [state,setState] = useState([{
         name:'2',path:'/2',key:'2'
     },{
         name:'3',path:'/3',key:'3'
-    },])
+    }])
 
 const onchange=(event)=>{
         console.log(event)
@@ -41,6 +41,7 @@ const onchange=(event)=>{
                 {state.map((item)=>{
                     return(
                         <div 
+                        style={{width:'100%',height:'100%'}}
                         onClick={()=> onchange(item)}
                         key={item.key}>
                             {item.name}
