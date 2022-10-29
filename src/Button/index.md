@@ -21,7 +21,6 @@ export default ()=>{
         <Button  type='primary'>primary Button</Button>
         <Button disabled>disabled Button</Button>
         <Button block>default Button</Button>
-        <button onClick={(e) => onClick(e)}>111</button>
         </>
         )
     }

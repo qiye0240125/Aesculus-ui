@@ -30,7 +30,7 @@ export interface SwiperProps {
     /**
      * 是否显示左右点击
      */
-    aboutClick?: boolean;
+    // aboutClick?: boolean;
     /**
      * 可选，切换索引的回调
      */
@@ -39,11 +39,17 @@ export interface SwiperProps {
 
 // const myContent = myContext(null)
 
+// 提供基于时间间隔重复调用callback的hooks
+const useInterval = (callback: any, interval: number) => {
+
+}
+
 const Swiper: FC<SwiperProps> = (
     {
         children,
         className = '',
         duration = 0.5,
+        autoplay = false,
     }
     // props
 ) => {
@@ -51,57 +57,64 @@ const Swiper: FC<SwiperProps> = (
     //底部按钮
     const [bottomIcon, setBottomIcon] = useState(0)
     //计算偏移量
-    const [clientWidth, setClientWidth] = useState();
+    // const [clientWidth, setClientWidth] = useState();
     const [letfWidth, setLeftWidth] = useState(0);
+    const [callbackTime, setCallbackTime] = useState(0);
     // console.log(props.children)
     // console.log(props.children[0].type.name)
 
     const swiperWrapper = useRef<any>(null)
+    const clientWidth = swiperWrapper?.current?.clientWidth
 
-    // const {
-    //     className = '',
-    //     duration = 0.5,
-    // } = props
 
-    // 获取单个元素的宽度
+    // const slider = useSlider(clientWidth)
+
+    useEffect(() => {
+        // autoplay ? useSlider() : null
+    }, [])
+
+
+
+
+    autoplay ? useEffect(() => {
+        const start = new Date().getTime()
+        const I = setInterval(() => {
+            let newtime = new Date().getTime() - start
+            setCallbackTime(newtime)
+            // console.log(newtime)
+            const lenth = children.length
+            handleClick(Math.floor(newtime / 3000) % lenth)
+        }, 500)
+        return () => clearInterval(I)
+    }, []) : null
 
 
 
     useEffect(() => {
-        // let timer = setInterval(() => {
-        //     next()
-        // }, 2000)
-        return (() => {
-            // clearInterval(timer)
-        })
-    }, [])
+        setLeftWidth(bottomIcon * clientWidth)
+        console.log(bottomIcon)
+    }, [bottomIcon])
 
+
+
+    //点击后偏移位置
     const handleClick = (index: number) => {
-        const clientWidth = swiperWrapper?.current?.clientWidth
         setBottomIcon(index)
-        setLeftWidth(index * clientWidth)
+        // console.log('我执行了')
     }
 
 
-    const next = () => {
-        // console.log(a, children.length)
-        if (bottomIcon > children.length)
-            return handleClick(0)
-        handleClick(bottomIcon + 1)
-    }
-
-    const prev = () => {
-        if (bottomIcon <= 0)
-            return
-        handleClick(bottomIcon - 1)
-    }
 
     return (
         <div
             ref={swiperWrapper}
             className={`${styles.swiperWrapper}`}>
             <div
-                style={{ left: `-${letfWidth}px`, transition: `all ${duration}s` }}
+                style={{
+                    // left: `-${letfWidth}px`,
+                    transition: `all ${duration}s`,
+                    transform: `translateX(-${letfWidth}px)`
+                }}
                 className={`${styles.swiperBox} ${styles[className]}`}>
                 {!children
                     ? null
@@ -120,7 +133,7 @@ const Swiper: FC<SwiperProps> = (
                     for (let i = 0; i < children.length; i++) {
                         li.push(
                             <li
-                                onClick={(e) => { handleClick(i) }}
+                                onClick={(e) => handleClick(i)}
                                 className={`${styles.li} ${bottomIcon === i ? styles.isOpen : styles.isClose}`}
                                 key={i} />
                         )

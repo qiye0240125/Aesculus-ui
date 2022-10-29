@@ -34,6 +34,20 @@ const onchange=(event)=>{
                     )
                 })}
             </Swiper>
+            <div>-</div>
+            <Swiper 
+            autoplay
+            >
+                {state.map((item)=>{
+                    return(
+                        <div 
+                        onClick={()=> onchange(item)}
+                        key={item.key}>
+                            {item.name}
+                        </div>
+                    )
+                })}
+            </Swiper>
         </>
         )
     }
