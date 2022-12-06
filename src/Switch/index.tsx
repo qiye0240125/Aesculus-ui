@@ -6,7 +6,7 @@ import styles from './index.less'
 
 export interface SwitchProps {
     /**
-     * 可选，切换索引的回调
+     * 点击变化后的回调
      */
     onChange?: (event: boolean) => void
 }
