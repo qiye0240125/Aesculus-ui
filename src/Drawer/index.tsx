@@ -37,8 +37,41 @@ const Drawer: FC<DrawerProps> = (
 
 
     useEffect(() => {
+
         open ? setOpens(true) : setOpens(false)
+        // document.body.style.overflow = 'hidden';
+        // if(open){
+        //     setOpens(true)
+        //     document.body.style.overflow = 'hidden';
+        // }else{
+        //     setOpens(false)
+        //     document.body.style.overflow = 'auto';
+        // }
+
     }, [opens])
+
+    useEffect(() => {
+
+        open ? setOpens(true) : setOpens(false)
+        // document.body.style.overflow = 'hidden';
+        // if(open){
+        //     setOpens(true)
+        //     document.body.style.overflow = 'hidden';
+        // }else{
+        //     setOpens(false)
+        //     document.body.style.overflow = 'auto';
+        // }
+
+    }, [open])
+
+    useEffect(() => {
+
+        if (open) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+    }, [])
 
 
 
@@ -53,8 +86,10 @@ const Drawer: FC<DrawerProps> = (
 
 
     return (
+
         <div
             ref={divRef}
+            // className={`${styles.drawerBox}`}
             className={`${styles.drawerBox}  ${open ? styles.isOpen : styles.isClose}`}
             onClick={closeMaskHndle}>
             <div className={styles.drawerBoxRight}>
@@ -72,8 +107,10 @@ const Drawer: FC<DrawerProps> = (
                         <Button type='primary' onClick={() => onClose()}>OK</Button>
                     </div>
                 </div>
-                <div className={styles[bodyStyle]}>
-                    {children}
+                <div>
+                    <div className={styles[bodyStyle]}>
+                        {children}
+                    </div>
                 </div>
             </div>
         </div >
