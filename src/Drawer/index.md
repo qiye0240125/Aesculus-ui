@@ -46,7 +46,7 @@ export default ()=>{
             <div>Some contents...</div> <div>Some contents...</div>
             <div>Some contents...</div>
             <div>Some contents...</div> <div>Some contents...</div>
-            <div>Some contents.Some contents.Some contents.Some contents.Some contents.Some contents.Some contents.Some contents.Some contents.Some contents.Some contents.Some contents...</div>
+            <div>Some contents...</div>
             <div>Some contents...</div> <div>Some contents...</div>
             <div>Some contents...</div>
             <div>Some contents...</div> <div>Some contents...</div>

@@ -37,35 +37,23 @@ const Drawer: FC<DrawerProps> = (
 
 
     useEffect(() => {
-
         open ? setOpens(true) : setOpens(false)
-        // document.body.style.overflow = 'hidden';
-        // if(open){
-        //     setOpens(true)
-        //     document.body.style.overflow = 'hidden';
-        // }else{
-        //     setOpens(false)
-        //     document.body.style.overflow = 'auto';
-        // }
-
     }, [opens])
 
     useEffect(() => {
-
-        open ? setOpens(true) : setOpens(false)
+        // open ? setOpens(true) : setOpens(false)
         // document.body.style.overflow = 'hidden';
-        // if(open){
-        //     setOpens(true)
-        //     document.body.style.overflow = 'hidden';
-        // }else{
-        //     setOpens(false)
-        //     document.body.style.overflow = 'auto';
-        // }
+        if(open){
+            setOpens(true)
+            document.body.style.overflow = 'hidden';
+        }else{
+            setOpens(false)
+            document.body.style.overflow = 'auto';
+        }
 
     }, [open])
 
     useEffect(() => {
-
         if (open) {
             document.body.style.overflow = 'hidden';
         } else {
