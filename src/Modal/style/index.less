@@ -1,17 +1,37 @@
 .ModalWarpper {
-    background-color: burlywood;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    // transition: opacity 500ms;
+    // transition:  width 500ms;
+    // overflow: hidden;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     .ModalBox {
-        width: 520px;
+        min-height: 200px;
+        padding: 30px;
+        min-width: 700px;
         background-color: white;
         border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        .ModalContent{
+            flex: 1;
+        }
+        .ModalBottom{
+            text-align: end;
+        }
     }
 
 }
 
-.isOpen {
-    
-}
+.isOpen {}
 
 .isClose {
     display: none;

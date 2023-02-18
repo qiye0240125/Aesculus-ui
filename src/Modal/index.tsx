@@ -41,19 +41,35 @@ const Modal: FC<ModalProps> = (
     const [opens, setOpens] = useState<boolean>()
     const divRef = useRef(null)
 
+    useEffect(() => {
+        if (open) {
+            setOpens(true)
+            document.body.style.overflow = "hidden"
+        } else {
+            setOpens(false)
+            document.body.style.overflow = "auto"
+        }
+    }, [open])
+
+    const closeMaskHndle = (e: any) => {
+        e.persist()
+        // console.log(e)
+        if (e.target !== divRef.current)
+            return
+        // showDrawer()
+        onClose()
+    }
 
     return (
         <div
             ref={divRef}
             className={`${styles.ModalWarpper} ${open ? styles.isOpen : styles.isClose}`}
-        >
-            <div
-                className={`${styles.ModalBox}`}
-            >
-                <div>
+            onClick={closeMaskHndle}>
+            <div className={`${styles.ModalBox}`}>
+                <div className={styles.ModalContent}>
                     {children}
                 </div>
-                <div>
+                <div className={styles.ModalBottom}>
                     <Button onClick={() => onClose()}>Cancal</Button>
                     <Button type='primary' onClick={() => onOK()}>OK</Button>
                 </div>
