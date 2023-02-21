@@ -60,10 +60,10 @@ const Tree: FC<TreeProps> = ({
         delete(item[`${fieldNames.title}`])
         return {
             ...item,
-            key: itemKey,
-            title: itemTitle,
+            key:itemKey,
+            title:itemTitle,
             indent: indent,
-            expand: false,
+            expand: true,
             checked: false,
             disabled: false,
             children: (itemChildren || []).map((item: any[]) =>
