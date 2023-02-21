@@ -42,10 +42,10 @@ const Tree: FC<TreeProps> = ({
 
     const handleClick = (item: any) => {
         // console.log(item)
-        if (item.disabled) return
-        if (item.children.length && item.checkbox) {
-            setTreeDatas([...treeDatas, item.checkbox = !item.checkbox])
-        }
+        // if (item.disabled) return
+        // if (item.children.length && item.checkbox) {
+        //     setTreeDatas([...treeDatas, item.checkbox = !item.checkbox])
+        // }
         setTreeDatas([...treeDatas, item.expand = !item.expand])
     }
 
@@ -53,8 +53,8 @@ const Tree: FC<TreeProps> = ({
 
     const handleTreeData = (item: any, indent = 0, fieldNames: any) => {
         const itemChildren = item[`${fieldNames.children}`]?item[`${fieldNames.children}`]: [] 
-        const itemKey = item[`${fieldNames.key}`]?item[`${fieldNames.key}`]: [] 
-        const itemTitle = item[`${fieldNames.title}`]?item[`${fieldNames.title}`]: [] 
+        const itemKey = item[`${fieldNames.key}`]?item[`${fieldNames.key}`]: `` 
+        const itemTitle = item[`${fieldNames.title}`]?item[`${fieldNames.title}`]:`` 
         delete(item[`${fieldNames.children}`])
         delete(item[`${fieldNames.key}`])
         delete(item[`${fieldNames.title}`])
@@ -65,7 +65,7 @@ const Tree: FC<TreeProps> = ({
             indent: indent,
             expand: true,
             checked: false,
-            disabled: false,
+            // disabled: false,
             children: (itemChildren || []).map((item: any[]) =>
                 handleTreeData(item, indent + 1, fieldNames)),
             

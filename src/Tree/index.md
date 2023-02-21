@@ -12,31 +12,31 @@ export default ()=>{
 
     const treeData = [
     {
-        titles: 'parent 1',
-        keys: '0-0',
-        childrens: [
+        title: 'parent 1',
+        key: '0-0',
+        children: [
         {
-            titles: 'parent 1-0',
-            keys: '0-0-0',
+            title: 'parent 1-0',
+            key: '0-0-0',
             disabled: true,
-            childrens: [
+            children: [
             {
-                titles: 'leaf',
-                keys: '0-0-0-0',
+                title: 'leaf',
+                key: '0-0-0-0',
                 disableCheckbox: true,
             },
             {
-                titles: 'leaf',
-                keys: '0-0-0-1',
+                title: 'leaf',
+                key: '0-0-0-1',
             },
             ],
         },
         {
-            titles: 'parent 1-1',
-            keys: '0-0-1',
-            childrens: [
+            title: 'parent 1-1',
+            key: '0-0-1',
+            children: [
             {
-                titles: (
+                title: (
                 <span
                     style={{
                     color: '#1890ff',
@@ -45,7 +45,7 @@ export default ()=>{
                     sss
                 </span>
                 ),
-                keys: '0-0-1-0',
+                key: '0-0-1-0',
             },
             ],
         },
@@ -63,7 +63,6 @@ export default ()=>{
     return(
         <>
         <Tree
-            fieldNames={{title:'titles',key:'keys',children:'childrens'}}
             checkable
             onSelect={onSelect}
             onCheck={onCheck}

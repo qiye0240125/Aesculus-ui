@@ -36,8 +36,9 @@ const TreeItem: FC<TreeProps> = ({
         <>
             {
                 Object.keys(itemData).map((item: any, index: number) => {
-                    // console.log(item)
+
                     const treeData = itemData[item]
+                    // console.log(itemData)
                     return (
                         <div key={treeData.key || index}>
                             <div className={style.treeDataBoX}
@@ -49,8 +50,10 @@ const TreeItem: FC<TreeProps> = ({
                                 >
                                     {treeData.expand && treeData.children.length ? down : (treeData.children.length ? right : null)}
                                 </div>
-                                <div className={style.treeDatatitle}
-                                    onClick={(e) => onSelect(treeData)}
+                                <div
+                                    className={`${treeData.disabled ?
+                                        style.disabled : style.treeDatatitle}`}
+                                    onClick={(e) => treeData.disabled?null:onSelect(treeData)}
                                 >{treeData.title}</div>
                             </div>
                             <div>
