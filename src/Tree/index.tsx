@@ -21,6 +21,10 @@ export interface TreeProps {
     * 自定义节点 title、key、children 的字段
     */
     fieldNames?: { title: string, key: string, children: string }
+    /**
+    * 将树禁用
+    */
+    disabled?:boolean
 }
 
 
