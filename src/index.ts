@@ -1,7 +1,8 @@
 export { default as Button } from './Button';
 export { default as Drawer } from './Drawer';
 export { default as Breadcrumb } from './Breadcrumb';
-export { default as Swiper } from './Swiper/index';
+export { default as Swiper } from './Swiper';
+export { default as List } from './List';
 export { default as Switch } from './Switch';
 export { default as Modal } from './Modal';
 export { default as Tree } from './Tree';
