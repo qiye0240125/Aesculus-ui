@@ -34,7 +34,9 @@ const List: FC<ListProps> = ({
     ItemBox = <></>,
     itemHeight = 50
 }) => {
+    //最外层div
     const ContainerRef = useRef<any>(null);
+    //定义一个开始
     const [startIndex, setStartIndex] = useState(0);
     // 用于撑开Container的盒子，计算其高度
     const wraperHeight = useMemo(() => {
@@ -63,8 +65,9 @@ const List: FC<ListProps> = ({
         for (let i = startIndex; i <= endIndex; i++) {
             // 渲染每个列表项
             rows.push(
-                <div
-                    className={styles.itemBox}
+                <ItemBox
+                    // className={styles.itemBox}
+                    data={i}
                     key={i}
                     style={{
                         width: "100%",
@@ -74,12 +77,36 @@ const List: FC<ListProps> = ({
                         top: `${i * itemHeight}px`,
                         left: 0,
                         right: 0,
-                    }}>{i}
-                </div>
+                    }}>
+                </ItemBox>
             )
         }
+        console.log(rows)
         return rows;
     }, [startIndex, endIndex, ItemBox])
+
+    // const renderList = useCallback(() => {
+    //     const rows = [];
+    //     for (let i = startIndex; i <= endIndex; i++) {
+    //         // 渲染每个列表项
+    //         rows.push(
+    //             <div
+    //                 className={styles.itemBox}
+    //                 key={i}
+    //                 style={{
+    //                     width: "100%",
+    //                     borderBottom: "1px solid #aaa",
+    //                     position: "absolute",
+    //                     height: `${itemHeight - 1}px`,
+    //                     top: `${i * itemHeight}px`,
+    //                     left: 0,
+    //                     right: 0,
+    //                 }}>{i}
+    //             </div>
+    //         )
+    //     }
+    //     return rows;
+    // }, [startIndex, endIndex, ItemBox])
 
 
 

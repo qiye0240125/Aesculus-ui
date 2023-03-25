@@ -11,13 +11,13 @@ export default ()=>{
 
 const [state,setState] = useState(Array(10000).fill(1));
 
-const ItemBox = ({data="",index = 0})=>{
+const ItemBox = memo(({data="",index = 0,style={}})=>{
     return(
-        <div>
+        <div style={style}>
             {data}
         </div> 
     )
-}
+})
 
 const onchange=(event)=>{
         console.log(event)
