@@ -1,7 +1,5 @@
 import React, { FC, useEffect, useState, useRef, ReactNode, useMemo, Children } from 'react';
 import styles from './style/index.less'
-import SwiperItem from './SwiperItem';
-
 
 
 export interface SwiperProps {
@@ -12,7 +10,7 @@ export interface SwiperProps {
      */
     autoplay?: boolean;
     /**
-     * 可选，动画时长,单位s 默认为 0.5
+     * 可选，切换时长,单位s 默认为 3000ms
      */
     duration?: number;
     /**
@@ -37,115 +35,126 @@ export interface SwiperProps {
     onSlideChange?: (event: any, index: number) => void
 }
 
-// const myContent = myContext(null)
-
-// 提供基于时间间隔重复调用callback的hooks
-const useInterval = (callback: any, interval: number) => {
-
-}
-
 const Swiper: FC<SwiperProps> = (
     {
         children,
         className = '',
-        duration = 0.5,
+        duration = 3000,
         autoplay = false,
         onSlideChange,
     }
-    // props
 ) => {
-    // 点击防抖bug
-    //底部按钮
-    const [bottomIcon, setBottomIcon] = useState(0)
-    //计算偏移量
-    // const [clientWidth, setClientWidth] = useState();
-    const [letfWidth, setLeftWidth] = useState(0);
-    const [callbackTime, setCallbackTime] = useState(0);
-    // console.log(props.children)
-    // console.log(props.children[0].type.name)
-
-    const swiperWrapper = useRef<any>(null)
-    const clientWidth = swiperWrapper?.current?.clientWidth
-
-
-    // const slider = useSlider(clientWidth)
-
-    useEffect(() => {
-        // autoplay ? useSlider() : null
-    }, [])
+    const [currentCarousel, setCurrentCarousel] = useState(0);
+    const [animationStep, setAnimationStep] = useState(1);
+    // 开始轮播
+    let timerID: any;
 
 
 
+    const handlerTransitionEnd = () => {
+        if (currentCarousel % (children.length + 1) === children.length) {
+            setAnimationStep(0);
+            setCurrentCarousel(0);
+        } else if (currentCarousel < 0) {
+            setAnimationStep(0);
+            setCurrentCarousel(children.length - 1);
+        }
+    }
 
-    autoplay ? useEffect(() => {
-        const start = new Date().getTime()
-        const I = setInterval(() => {
-            let newtime = new Date().getTime() - start
-            // setCallbackTime(newtime)
-            // console.log(newtime)
-            const lenth = children.length
-            handleClick(Math.floor(newtime / 3000) % lenth)
-        }, 500)
-        return () => clearInterval(I)
-    }, []) : null
+    const handlerNext = () => {
+        handlerCarousel('right');
+    }
 
+    const handlerPre = () => {
+        handlerCarousel('left');
+    }
 
-
-    useEffect(() => {
-        setLeftWidth(bottomIcon * clientWidth)
-        // console.log(bottomIcon)
-    }, [bottomIcon])
-
-
-
-    //点击后偏移位置
-    const handleClick = (index: number) => {
-        setBottomIcon(index)
-        // console.log('我执行了')
+    const getIndicatorsActive = (index: number) => {
+        if (currentCarousel === index || currentCarousel === index + children.length || (currentCarousel < 0 && index === children.length - 1)) {
+            return 'styles.isOpen';
+        }
+        return 'styles.isClose';
     }
 
 
+    const handleCarouselFooterMouseOver = (currentIndex: number) => {
+        setAnimationStep(animationStep);
+        setCurrentCarousel(currentIndex);
+    }
+
+    const handlerCarousel = (type: any) => {
+        let direction = 1;
+        if (type === 'left') {
+            direction = -1;
+        }
+        if (currentCarousel % (children.length + 1) !== children.length && currentCarousel >= 0) {
+            setCurrentCarousel(currentCarousel => (currentCarousel + direction) % (children.length + 1));
+            setAnimationStep(animationStep);
+        }
+    }
+
+    {
+        autoplay ?
+            useEffect(() => {
+                // startCarousel();
+                stopCarousel()
+                timerID = setInterval(() => {
+                    handlerCarousel('right');
+                },duration);
+                return () => {
+                    clearInterval(timerID);
+                }
+            }, []) : null
+    }
+
+
+    // 停止轮播
+    const stopCarousel = () => {
+        clearInterval(timerID);
+    }
 
     return (
-        <div
-            ref={swiperWrapper}
-            className={`${styles.swiperWrapper}`}>
-            <div
+        <div className={`${styles.carouselContainer}`}>
+            <div className={`${styles.carouselBody}`}
+                onTransitionEnd={handlerTransitionEnd}
                 style={{
-                    // left: `-${letfWidth}px`,
-                    transition: `all ${duration}s`,
-                    transform: `translateX(-${letfWidth}px)`
-                }}
-                className={`${styles.swiperBox} ${styles[className]}`}>
-                {!children
-                    ? null
-                    : children.map((item: any, index: number) => {
+                    transition: `transform ${animationStep}s`,
+                    width: `${(children.length + 2) * 100}%`,
+                    transform: `translateX(${-100 / (children.length + 2) * (currentCarousel + 1)}%)`
+                }}>
+                <div className={`${styles.carouselItem}`}
+                    style={{ width: `${100 / (children.length + 2)}%` }}
+                    key={'start'} >{children[children.length - 1]}
+                </div>
+                {children.map((item: any, index: number) => {
+                    return <div className={`${styles.carouselItem}`}
+                        style={{ width: `${100 / (children.length + 2)}%` }}
+                        key={index} >{item}
+                    </div>
+                })}
+                <div className={`${styles.carouselItem}`}
+                    style={{ width: `${100 / (children.length + 2)}%` }}
+                    key={'end'} >
+                    {children[0]}
+                </div>
+            </div>
+            <div className={`${styles.carouselFooter}`}>
+                <ul className={`${styles.indicatorsContainer}`}>
+                    {children.map((item: any, index: number) => {
                         return (
-                            <div
-                                className={styles.siwperItem}
-                                key={index}>{item}</div>
-                        )
+                            <li onClick={() => handleCarouselFooterMouseOver(index)}
+                                className={`${styles.indicatorsItem} ${currentCarousel === index || currentCarousel === index + children.length || (currentCarousel < 0 && index === children.length - 1) ? styles.isOpen : styles.isClose
+                                    }`}
+                                key={index}></li>
+                        );
                     })}
+                </ul>
             </div>
 
-            <ul className={styles.ol}>
-                {(() => {
-                    let li = [];
-                    for (let i = 0; i < children.length; i++) {
-                        li.push(
-                            <li
-                                onClick={(e) => { handleClick(i); onSlideChange ? onSlideChange(e, i) : null }}
-                                className={`${styles.li} ${bottomIcon === i ? styles.isOpen : styles.isClose}`}
-                                key={i} />
-                        )
-                    }
-                    return li
-                })()}
-            </ul>
-
-        </div >
-    )
+        </div>
+    );
 }
 
-export default Swiper
 
+
+export default Swiper;

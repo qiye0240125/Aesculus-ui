@@ -67,7 +67,6 @@ export default ()=>{
             onSelect={onSelect}
             onCheck={onCheck}
             treeData={treeData}
-        
         ></Tree>
         </>
         )
